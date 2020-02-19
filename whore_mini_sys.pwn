@@ -29,36 +29,34 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		case DIALOG_WHORE: {
 			if(!response) return 1;
 			switch(listitem) {
-				case 0: SendClientMessage(playerid, -1, "You paid the whore a kiss !"), TogglePlayerControllable(playerid, 0), AP_ApplyActorAnimation(WhoreActor,"KISSING","Playa_Kiss_01",4.1,0,1,1,1,1), defer firstTimer(playerid);
-				case 1: SendClientMessage(playerid, -1, "You paid the whore a blow job!"), TogglePlayerControllable(playerid, 0), AP_ApplyActorAnimation(WhoreActor,"BLOWJOBZ","BJ_COUCH_LOOP_W",4.0,1,1,1,1,0), defer secondTimer(playerid);
-				case 2: SendClientMessage(playerid, -1, "You paid the whore a sexy dance!"), TogglePlayerControllable(playerid, 0), AP_ApplyActorAnimation(WhoreActor,"STRIP","strip_E",4.1,1,1,1,1,1), defer thirdTimer(playerid);
+				case 0: SendClientMessage(playerid, -1, "You paid the whore a kiss !"), TogglePlayerControllable(playerid, 0), AP_ApplyActorAnimation(WhoreActor,"KISSING","Playa_Kiss_01",4.1,0,1,1,1,1), defer TTimer(playerid, 1);
+				case 1: SendClientMessage(playerid, -1, "You paid the whore a blow job!"), TogglePlayerControllable(playerid, 0), AP_ApplyActorAnimation(WhoreActor,"BLOWJOBZ","BJ_COUCH_LOOP_W",4.0,1,1,1,1,0), defer TTimer[4000](playerid, 2);
+				case 2: SendClientMessage(playerid, -1, "You paid the whore a sexy dance!"), TogglePlayerControllable(playerid, 0), AP_ApplyActorAnimation(WhoreActor,"STRIP","strip_E",4.1,1,1,1,1,1), defer TTimer[3000](playerid, 3);
 			}
 		}
 	}
 	return Y_HOOKS_CONTINUE_RETURN_1;
 }	
 
-timer firstTimer[5000](playerid) {
-	TogglePlayerControllable(playerid, 1);
-	ClearActorAnimations(WhoreActor);
-	SendClientMessage(playerid, -1, "The kiss that lasted ended five second!");
-	GivePlayerMoney(playerid, -2000);
-	return 1;
-}
-
-timer secondTimer[4000](playerid) {
-	TogglePlayerControllable(playerid, 1);
-	ClearActorAnimations(WhoreActor);
-	SendClientMessage(playerid, -1, "The whore ended up suck for four seconds, the fuck better the second time!");
-	GivePlayerMoney(playerid, -1000);
-	return 1;
-}
-
-timer thirdTimer[3000](playerid) {
-	TogglePlayerControllable(playerid, 1);
-	ClearActorAnimations(WhoreActor);
-	SendClientMessage(playerid, -1, "The dance that lasted ended sexy dance!");
-	GivePlayerMoney(playerid, -2000);
+timer TTimer[5000](playerid, opcija) {
+	if(opcija == 1) {
+		TogglePlayerControllable(playerid, 1);
+		ClearActorAnimations(WhoreActor);
+		SendClientMessage(playerid, -1, "The kiss that lasted ended five second!");
+		GivePlayerMoney(playerid, -2000);
+	}
+	else if(opcija == 2) {
+		TogglePlayerControllable(playerid, 1);
+		ClearActorAnimations(WhoreActor);
+		SendClientMessage(playerid, -1, "The whore ended up suck for four seconds, the fuck better the second time!");
+		GivePlayerMoney(playerid, -1000);
+	}
+	else if(opcija == 3) {
+		TogglePlayerControllable(playerid, 1);
+		ClearActorAnimations(WhoreActor);
+		SendClientMessage(playerid, -1, "The dance that lasted ended sexy dance!");
+		GivePlayerMoney(playerid, -2000);
+	}
 	return 1;
 }
 
