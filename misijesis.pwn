@@ -3,6 +3,8 @@
 	Takodje prilagodite modul vasoj skripti..*/
 
 #include  <YSI_Coding\y_hooks>
+#include  <YSI_Coding\y_va>
+#include  <YSI_Coding\y_timers>
 
 static 
 		OtvaranjeTdova[MAX_PLAYERS char],
