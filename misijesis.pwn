@@ -2,7 +2,7 @@
 	xMisija1 i ostalo definisite u vasoj skripti..
 	Takodje prilagodite modul vasoj skripti..*/
 
-#include  <YSI\y_hooks>
+#include  <YSI_Coding\y_hooks>
 
 static 
 		OtvaranjeTdova[MAX_PLAYERS char],
@@ -43,7 +43,7 @@ hook OnGameModeInit()
 {
 	//kreirati actore
 	CreateDynamicActor(289,1977.4031,-1362.1610,23.9250,271.6468,0,100.0,0,0);
-	return 1;
+	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
 hook OnPlayerConnect(playerid)
@@ -61,7 +61,7 @@ hook OnPlayerConnect(playerid)
 	PlayerInfo[playerid][xMisija3] = 
 	PlayerInfo[playerid][xMisija4] = 
 	PlayerInfo[playerid][xMisija5] = 0;	
-	return 1;
+	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
 hook OnPlayerDeath(playerid)
@@ -80,7 +80,7 @@ hook OnPlayerDeath(playerid)
 	DestroyVehicle(VoziloUnistenje{playerid});
 	DestroyActor(ActorUbijanje{playerid});
 	DestroyActor(ActorUbijanje1{playerid});	
-	return 1;
+	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
 hook OnPlayerDisconnect(playerid, reason)
@@ -99,7 +99,7 @@ hook OnPlayerDisconnect(playerid, reason)
 	DestroyActor(ActorPrvaMisija{playerid});
 	DestroyActor(ActorUbijanje{playerid});
 	DestroyActor(ActorUbijanje1{playerid});		
-	return 1;
+	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
 hook OnPlayerClickPlayerTextDraw(playerid,PlayerText:playertextid) {
@@ -194,7 +194,7 @@ hook OnPlayerClickPlayerTextDraw(playerid,PlayerText:playertextid) {
 		}
 		else return SendClientMessage(playerid, -1, "Vec radite neku misiju!");		
 	}	
-	return 1;
+	return Y_HOOKS_CONTINUE_RETURN_1;
 }	
 
 hook OnPlayerEnterCheckpoint(playerid) {
@@ -279,12 +279,13 @@ hook OnPlayerEnterCheckpoint(playerid) {
 		DestroyVehicle(VoziloOruzje{playerid});
 		CP8{playerid} = false;
 	}	
-	return 1;
+	return Y_HOOKS_CONTINUE_RETURN_1;
 }	
 
 timer TimerPostavljenje[1000](playerid) {
 	ClearAnimations(playerid);
 	defer TimerPucanje(playerid);
+	return 1;
 }
 timer TimerPucanje[5000](playerid) {
 	DestroyVehicle(VoziloUnistenje{playerid});
@@ -293,6 +294,7 @@ timer TimerPucanje[5000](playerid) {
 	MissionRespect{playerid} =
 	MissionRespect1{playerid} = 1;
 	defer Pilav(playerid);
+	return 1;
 }
 
 timer Pilav[1000](playerid) {
@@ -306,7 +308,8 @@ timer Pilav[1000](playerid) {
 		MisijaBroj4{playerid} =
 		MisijaBroj5{playerid} = 0;
 		SetPlayerVirtualWorld(playerid, 0);
-	}	
+	}
+	return 1;
 }
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
@@ -332,7 +335,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			}	
 		}		
 	}	
-	return 1;
+	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
 stock IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:Range)
