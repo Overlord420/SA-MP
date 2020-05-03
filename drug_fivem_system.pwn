@@ -2,6 +2,7 @@
 // NARAVNO OVAJ MODUL PRILAGODITE VASOJ SKRIPTI!
 // Stavite tamo gde gde se cuvaju podaci od igracu kao sto su sifra, email itd - pPrljavNovac - i stavite da se cuva!
 #include <YSI_Coding\y_hooks>
+#include <YSI_Coding\y_timers>
 
 static
 	skupljadrogu[MAX_PLAYERS],
