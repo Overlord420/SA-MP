@@ -7,7 +7,7 @@ static
 	skupljadrogu[MAX_PLAYERS],
 	PlayerText:DrugTDS[MAX_PLAYERS];
 
-hook OnGameModeInit() {
+hook OnPlayerConnect(playerid) {
 
 	DrugTDS[playerid] = CreatePlayerTextDraw(playerid, 573.924011, 341.083374, "+drug");
 	PlayerTextDrawLetterSize(playerid, DrugTDS[playerid], 0.311449, 1.226666);
@@ -17,13 +17,6 @@ hook OnGameModeInit() {
 	PlayerTextDrawBackgroundColor(playerid, DrugTDS[playerid], 255);
 	PlayerTextDrawFont(playerid, DrugTDS[playerid], 2);
 	PlayerTextDrawSetProportional(playerid, DrugTDS[playerid], 1);
-	return 1;
-}
-
-
-hook OnPlayerConnect(playerid) {
-
-	skupljadrogu[playerid] = 0;
 	return 1;
 }
 
